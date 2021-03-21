@@ -9,7 +9,9 @@ spring:
     name: '@project.artifactId@'
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://10.58.112.4/e_learning_database?serverTimezone=UTC
+    url: jdbc:mysql://e_learning_database/?cloudSqlInstance=e-learning-back-end:europe-west2:e-learning-instance&socketFactory=com.google.cloud.sql.mysql.SocketFactory
+
+#    url: jdbc:mysql://10.58.112.4/e_learning_database?serverTimezone=UTC
     username: root
     password: root
   jpa:
