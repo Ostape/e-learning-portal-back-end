@@ -29,7 +29,17 @@ public class TeacherController {
         User user = new User();
         user.setFirstName("Name");
         teacherRepository.save(user);
-        return "teacherService.findById(id);";
+        return teacherRepository.findAll().toString();
+    }
+
+    @ApiOperation("Get teacher by id")
+    @GetMapping("/save")
+    public String saveTeacherById() {
+        User user = new User();
+        user.setFirstName("Nazar");
+        user.setSecondName("Shcur");
+        teacherRepository.save(user);
+        return "Ok";
     }
 
     @ApiOperation("Get teacher by id")
