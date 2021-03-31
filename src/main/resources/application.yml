@@ -15,7 +15,11 @@ spring:
     hibernate.ddl-auto: update
     generate-ddl: true
     show-sql: true
-#  jackson:
-#    serialization:
-#      INDENT_OUTPUT: true
+  jackson:
+    serialization:
+      INDENT_OUTPUT: true
 
+jwt:
+  token:
+    secret: elearningportal
+    expired: 3600000
