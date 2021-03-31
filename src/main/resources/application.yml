@@ -1,5 +1,5 @@
 server:
-  port: 9090
+  port: 5000
   servlet:
     context-path: /e-learning-portal
 
@@ -7,15 +7,15 @@ server:
 spring:
   application:
     name: '@project.artifactId@'
-#  datasource:
+  datasource:
 #    driverClassName: com.mysql.cj.jdbc.Driver
-#    url: jdbc:mysql://localhost:3306/e-journal?serverTimezone=UTC
-#    username: root
-#    password: root
-#  jpa:
-#    hibernate.ddl-auto: update
-#    generate-ddl: true
-#    show-sql: true
+    url: jdbc:mysql://e-learning-database-instance.cojipqlkwari.us-east-2.rds.amazonaws.com:3306/e_learning?serverTimezone=UTC
+    username: root
+    password: back22#password
+  jpa:
+    hibernate.ddl-auto: update
+    generate-ddl: true
+    show-sql: true
 #  jackson:
 #    serialization:
 #      INDENT_OUTPUT: true

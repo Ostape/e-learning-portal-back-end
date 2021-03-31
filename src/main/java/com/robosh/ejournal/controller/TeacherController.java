@@ -1,5 +1,7 @@
 package com.robosh.ejournal.controller;
 
+import com.robosh.ejournal.data.entity.User;
+import com.robosh.ejournal.data.repository.TeacherRepository;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/test-endpoint")
 public class TeacherController {
 
+    private final TeacherRepository teacherRepository;
+
 //    @ApiOperation("Save new teacher")
 //    @PostMapping
 //    public ResponseEntity<TeacherDto> saveTeacher(@RequestBody @Valid SaveTeacherDto teacher) {
@@ -22,6 +26,16 @@ public class TeacherController {
     @ApiOperation("Get teacher by id")
     @GetMapping("/{id}")
     public String findTeacherById(@PathVariable Long id) {
-        return "teacherService.findById(id);";
+        return teacherRepository.findAll().toString();
+    }
+
+    @ApiOperation("Get teacher by id")
+    @GetMapping("/save")
+    public String saveTeacherById() {
+        User user = new User();
+        user.setFirstName("Nazar");
+        user.setSecondName("Shcur");
+        teacherRepository.save(user);
+        return "Ok";
     }
 }
