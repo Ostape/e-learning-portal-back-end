@@ -23,25 +23,6 @@ public class TeacherController {
 //        return new ResponseEntity<>(teacherService.save(teacher), HttpStatus.CREATED);
 //    }
 //
-    @ApiOperation("Create teacher by id")
-    @GetMapping("/{id}")
-    public String findTeacherById(@PathVariable Long id) {
-        User user = new User();
-        user.setFirstName("Name");
-        teacherRepository.save(user);
-        return teacherRepository.findAll().toString();
-    }
-
-    @ApiOperation("Get teacher by id")
-    @GetMapping("/save")
-    public String saveTeacherById() {
-        User user = new User();
-        user.setFirstName("Nazar");
-        user.setSecondName("Shcur");
-        teacherRepository.save(user);
-        return "Ok";
-    }
-
     @ApiOperation("Get teacher by id")
     @GetMapping("/get/{id}")
     public String getTeacherById(@PathVariable Long id) {
