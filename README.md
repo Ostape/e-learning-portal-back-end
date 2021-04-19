@@ -2,7 +2,7 @@
 
 ## Swagger
 Link to api documentation: 
-http://localhost:9090/e-learning-portal/swagger-ui.html
+http://localhost:5000/e-learning-portal/swagger-ui.html
 
 ## Repository with tests
 Link to the repository with tests

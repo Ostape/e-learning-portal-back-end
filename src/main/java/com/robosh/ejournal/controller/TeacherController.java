@@ -1,16 +1,21 @@
 package com.robosh.ejournal.controller;
 
-import com.robosh.ejournal.service.TeacherService;
+import com.robosh.ejournal.data.entity.User;
+import com.robosh.ejournal.data.repository.TeacherRepository;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/teachers")
+@RequestMapping("/test-endpoint")
 public class TeacherController {
 
-    private final TeacherService teacherService;
+    private final TeacherRepository teacherRepository;
 
 //    @ApiOperation("Save new teacher")
 //    @PostMapping
@@ -18,25 +23,9 @@ public class TeacherController {
 //        return new ResponseEntity<>(teacherService.save(teacher), HttpStatus.CREATED);
 //    }
 //
-//    @ApiOperation("Get teacher by id")
-//    @GetMapping("/{id}")
-//    public TeacherDto findTeacherById(@PathVariable Long id) {
-//        return teacherService.findById(id);
-//    }
-//
-//    @ApiOperation("Get paged teachers by school id")
-//    @GetMapping
-//    public List<TeacherDto> findTeachersBySchoolId(
-//            @RequestParam("page") int page,
-//            @RequestParam("size") int size,
-//            @RequestParam("schoolId") Long schoolId
-//    ) {
-//        return teacherService.findAllBySchoolId(schoolId, page, size);
-//    }
-//
-//    @ApiOperation("Update teacher")
-//    @PutMapping
-//    public TeacherDto updateTeacher(@RequestBody @Valid SaveTeacherDto dto) {
-//        return teacherService.updateTeacher(dto);
-//    }
+    @ApiOperation("Get teacher by id")
+    @GetMapping("/get/{id}")
+    public String getTeacherById(@PathVariable Long id) {
+        return teacherRepository.findAll().toString();
+    }
 }

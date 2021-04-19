@@ -1,51 +1,31 @@
 package com.robosh.ejournal.data.entity;
 
-import com.robosh.ejournal.util.validation.annotation.Phone;
-import com.robosh.ejournal.util.validation.annotation.Unique;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import javax.persistence.*;
 
+@Entity
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "user")
 public class User {
-
     @Id
     @GeneratedValue
-    protected Long id;
+    private Long id;
 
-    @NotBlank
-    @Column(name = "first_name")
-    protected String firstName;
+    private String username;
 
-    @Column(name = "second_name")
-    protected String secondName;
+    private String password;
 
-    @NotBlank
-    @Column(name = "last_name")
-    protected String lastName;
+    private String email;
 
-    @Email
-    @Column(name = "email", unique = true)
-    protected String email;
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
-    //todo pattern
-    @Column(name = "password")
-    protected String password;
-
-    @Phone
-    @Column(name = "phone")
-    protected String phone;
+    @Enumerated(EnumType.STRING)
+    private Status status;
 }
