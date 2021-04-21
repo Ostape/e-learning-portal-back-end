@@ -1,8 +1,10 @@
 package com.robosh.ejournal.service.impl;
 
+import com.robosh.ejournal.data.dto.UserDto;
 import com.robosh.ejournal.data.entity.Role;
 import com.robosh.ejournal.data.entity.Status;
 import com.robosh.ejournal.data.entity.User;
+import com.robosh.ejournal.data.mapper.UserMapper;
 import com.robosh.ejournal.data.repository.UserRepository;
 import com.robosh.ejournal.service.UserService;
 import lombok.AllArgsConstructor;
@@ -17,6 +19,7 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;
+    private final UserMapper userMapper;
 
     @Override
     public User register(User user) {
@@ -39,5 +42,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findByUsername(String username) {
         return userRepository.findUserByUsername(username);
+    }
+
+    @Override
+    public UserDto findByUsernameToken(String username) {
+        return userMapper.fromUserToUserDto(findByUsername(username));
     }
 }

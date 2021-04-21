@@ -1,23 +1,25 @@
 package com.robosh.ejournal.data.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserDto {
 
-    protected Long id;
+    private Long id;
 
-    protected String firstName;
+    private String username;
 
-    protected String secondName;
+    private String name;
 
-    protected String lastName;
+    private String surname;
 
-    protected String email;
+    private String email;
 
-    protected String phone;
+    private String phone;
 }

@@ -13,14 +13,24 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
+
     @Id
     @GeneratedValue
     private Long id;
 
+    @Column(unique = true)
     private String username;
+
+    private String name;
+
+    private String surname;
 
     private String password;
 
+    @Column(unique = true)
+    private String phone;
+
+    @Column(unique = true)
     private String email;
 
     @Enumerated(EnumType.STRING)
