@@ -35,11 +35,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findById(Long id) {
-        return userRepository.findById(id).orElseThrow(RuntimeException::new);
-    }
-
-    @Override
     public User findByUsername(String username) {
         return userRepository.findUserByUsername(username);
     }
@@ -47,5 +42,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDto findByUsernameToken(String username) {
         return userMapper.fromUserToUserDto(findByUsername(username));
+    }
+
+    @Override
+    public UserDto updateUserData(UserDto userDto) {
+        User userByUsername = userRepository.findUserByUsername(userDto.getUsername());
+        userDto.setId(userByUsername.getId());
+        return userMapper.fromUserToUserDto(userRepository.save(userMapper.fromUserDtoToUser(userDto)));
     }
 }

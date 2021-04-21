@@ -8,10 +8,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/users")
@@ -27,9 +24,15 @@ public class UserController {
     }
 
     @ApiOperation("Returns all user data")
-    @GetMapping("/userdata")
+    @GetMapping("/user-data")
     public ResponseEntity<UserDto> getUserData() {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         return new ResponseEntity<>(userService.findByUsernameToken(username), HttpStatus.OK);
+    }
+
+    @ApiOperation("Update all user data")
+    @PutMapping("/update-user")
+    public ResponseEntity<UserDto> updateUserData(@RequestBody UserDto userDto) {
+        return new ResponseEntity<>(userService.updateUserData(userDto), HttpStatus.OK);
     }
 }

@@ -10,9 +10,9 @@ public interface UserService {
 
     List<User> getAll();
 
-    User findById(Long id);
-
     User findByUsername(String username);
 
     UserDto findByUsernameToken(String username);
+
+    UserDto updateUserData(UserDto userDto);
 }
