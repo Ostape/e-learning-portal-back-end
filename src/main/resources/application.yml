@@ -8,7 +8,7 @@ spring:
   application:
     name: '@project.artifactId@'
   datasource:
-    url: jdbc:mysql://e-learning-database-instance.cojipqlkwari.us-east-2.rds.amazonaws.com:3306/e_learning?serverTimezone=UTC
+    url: jdbc:mysql://elearning-identifier-database.cojipqlkwari.us-east-2.rds.amazonaws.com:3306/elearningdatabase?serverTimezone=UTC
     username: root
     password: back22#password
   jpa:
