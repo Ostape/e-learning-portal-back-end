@@ -18,4 +18,14 @@ public class SubmitHomeworkController {
     public String submitTest() {
         return submitHomeworkService.createFile();
     }
+
+    @GetMapping("/show-directory")
+    public String showDirectory() {
+        return submitHomeworkService.showDirectory();
+    }
+
+    @GetMapping("/start-shell")
+    public String startShellScript() {
+        return submitHomeworkService.startShellScript();
+    }
 }
