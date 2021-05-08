@@ -40,6 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(SWAGGER).permitAll()
                 .antMatchers(LOGIN_ENDPOINT).permitAll()
                 .antMatchers("/submit-homework/**").permitAll()
+                .antMatchers("/courses/**").permitAll()
                 .antMatchers(ADMIN_ENDPOINT).hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()

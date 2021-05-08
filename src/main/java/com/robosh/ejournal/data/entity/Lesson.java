@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.List;
@@ -21,6 +22,8 @@ public class Lesson {
 
     private String name;
 
+    @Column(name = "description", length = 65535)
+    @Type(type="text")
     private String description;
 
     private int durationMinutes;
