@@ -20,8 +20,10 @@ public class WishListCourseService {
 
     public List<Course> getCoursesByUsername(String username) {
         WishListCourses wishListCoursesByUsername = wishListCourseRepository.findWishListCoursesByUsername(username);
-//        System.out.println(wishListCoursesByUsername.getCourses());
-        return Collections.emptyList();
+        if (wishListCoursesByUsername == null) {
+            return Collections.emptyList();
+        }
+        return courseRepository.findAllById(wishListCoursesByUsername.getCoursesId());
     }
 
     public List<Course> addCourseToWishList(String username, Long courseId) {
