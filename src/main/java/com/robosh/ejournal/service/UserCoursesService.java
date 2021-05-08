@@ -7,6 +7,7 @@ import com.robosh.ejournal.data.repository.UserCoursesRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -24,5 +25,16 @@ public class UserCoursesService {
         } else {
             return courseRepository.findAllById(coursers.getCoursesId());
         }
+    }
+
+    public List<Course> addCourseToStudy(String username, Long courseId) {
+        UserCoursers coursers = userCoursesRepository.findUserCoursersByUsername(username);
+        if (coursers == null) {
+            coursers = new UserCoursers();
+            coursers.setCoursesId(new ArrayList<>());
+            coursers.setUsername(username);
+        }
+        coursers.getCoursesId().add(courseId);
+        return courseRepository.findAllById(userCoursesRepository.save(coursers).getCoursesId());
     }
 }
