@@ -1,18 +1,47 @@
 package com.robosh.ejournal.service;
 
 import com.robosh.ejournal.data.dto.UserDto;
+import com.robosh.ejournal.data.entity.Role;
+import com.robosh.ejournal.data.entity.Status;
 import com.robosh.ejournal.data.entity.User;
+import com.robosh.ejournal.data.mapper.UserMapper;
+import com.robosh.ejournal.data.repository.UserRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-public interface UserService {
-    User register(User user);
+@Service
+@AllArgsConstructor
+public class UserService {
 
-    List<User> getAll();
+    private final UserRepository userRepository;
+    private final BCryptPasswordEncoder passwordEncoder;
+    private final UserMapper userMapper;
 
-    User findByUsername(String username);
+    public User register(User user) {
+        user.setRole(Role.ROLE_USER);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setStatus(Status.ACTIVE);
+        return userRepository.save(user);
+    }
 
-    UserDto findByUsernameToken(String username);
+    public List<User> getAll() {
+        return userRepository.findAll();
+    }
 
-    UserDto updateUserData(UserDto userDto);
+    public User findByUsername(String username) {
+        return userRepository.findUserByUsername(username);
+    }
+
+    public UserDto findByUsernameToken(String username) {
+        return userMapper.fromUserToUserDto(findByUsername(username));
+    }
+
+    public UserDto updateUserData(UserDto userDto) {
+        User userByUsername = userRepository.findUserByUsername(userDto.getUsername());
+        userDto.setId(userByUsername.getId());
+        return userMapper.fromUserToUserDto(userRepository.save(userMapper.fromUserDtoToUser(userDto)));
+    }
 }

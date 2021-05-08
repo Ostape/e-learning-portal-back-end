@@ -34,7 +34,7 @@ public class AuthenticationController {
             String username = dto.getUsername();
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, dto.getPassword()));
             User user = userService.findByUsername(username);
-            if(user == null) {
+            if (user == null) {
                 throw new UsernameNotFoundException(username + " not found");
             }
 
@@ -45,7 +45,7 @@ public class AuthenticationController {
             response.put("token", token);
 
             return ResponseEntity.ok(response);
-        }catch (AuthenticationException e) {
+        } catch (AuthenticationException e) {
             throw new BadCredentialsException("Invalid creds");
         }
     }
