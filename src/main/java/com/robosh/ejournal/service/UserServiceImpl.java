@@ -1,4 +1,4 @@
-package com.robosh.ejournal.service.impl;
+package com.robosh.ejournal.service;
 
 import com.robosh.ejournal.data.dto.UserDto;
 import com.robosh.ejournal.data.entity.Role;
