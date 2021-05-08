@@ -41,4 +41,10 @@ public class WishListCourseService {
     private List<Course> getCoursesByIds(List<Long> coursesIds) {
         return courseRepository.findAllById(coursesIds);
     }
+
+    public List<Course> deleteCourseFromWishList(String username, Long courseId) {
+        WishListCourses wishListCourses = wishListCourseRepository.findWishListCoursesByUsername(username);
+        wishListCourses.getCoursesId().remove(courseId);
+        return courseRepository.findAllById(wishListCourseRepository.save(wishListCourses).getCoursesId());
+    }
 }

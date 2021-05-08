@@ -20,14 +20,20 @@ public class WishListCourseController {
 
     @GetMapping("/all")
     public ResponseEntity<List<Course>> getWishListCourses() {
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        wishListCourseService.getCoursesByUsername(username);
-        return new ResponseEntity<>(wishListCourseService.getCoursesByUsername(username), HttpStatus.OK);
+        return new ResponseEntity<>(wishListCourseService.getCoursesByUsername(getUsername()), HttpStatus.OK);
     }
 
     @PostMapping("/add")
     public ResponseEntity<List<Course>> addCourseToWishList(@RequestBody Long courseId) {
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        return new ResponseEntity<>(wishListCourseService.addCourseToWishList(username, courseId), HttpStatus.OK);
+        return new ResponseEntity<>(wishListCourseService.addCourseToWishList(getUsername(), courseId), HttpStatus.OK);
+    }
+
+    @PostMapping("/delete")
+    public ResponseEntity<List<Course>> deleteCourseFromWishList(@RequestBody Long courseId) {
+        return new ResponseEntity<>(wishListCourseService.deleteCourseFromWishList(getUsername(), courseId), HttpStatus.OK);
+    }
+
+    private String getUsername() {
+        return SecurityContextHolder.getContext().getAuthentication().getName();
     }
 }
