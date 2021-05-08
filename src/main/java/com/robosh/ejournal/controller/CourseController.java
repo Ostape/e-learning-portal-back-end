@@ -22,6 +22,8 @@ public class CourseController {
         return new ResponseEntity<>(courseService.createCourse(course), HttpStatus.OK);
     }
 
+    // todo add all visible courses
+
     @GetMapping("/all")
     public ResponseEntity<List<Course>> getAllCourses() {
         return new ResponseEntity<>(courseService.getAllCourses(), HttpStatus.OK);
