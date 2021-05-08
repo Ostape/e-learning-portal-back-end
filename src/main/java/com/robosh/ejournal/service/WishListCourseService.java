@@ -7,6 +7,7 @@ import com.robosh.ejournal.data.repository.WishListCourseRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -25,6 +26,11 @@ public class WishListCourseService {
 
     public List<Course> addCourseToWishList(String username, Long courseId) {
         WishListCourses wishListCourses = wishListCourseRepository.findWishListCoursesByUsername(username);
+        if (wishListCourses == null) {
+            wishListCourses = new WishListCourses();
+            wishListCourses.setCoursesId(new ArrayList<>());
+            wishListCourses.setUsername(username);
+        }
         wishListCourses.getCoursesId().add(courseId);
         wishListCourseRepository.save(wishListCourses);
         return getCoursesByIds(wishListCourses.getCoursesId());

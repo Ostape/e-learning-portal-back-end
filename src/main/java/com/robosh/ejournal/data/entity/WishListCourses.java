@@ -22,6 +22,6 @@ public class WishListCourses {
     private String username;
 
     @Column
-    @ElementCollection(targetClass=Integer.class)
+    @ElementCollection(targetClass=Long.class)
     private List<Long> coursesId;
 }
