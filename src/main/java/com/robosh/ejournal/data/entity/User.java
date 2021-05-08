@@ -21,10 +21,13 @@ public class User {
     @Column(unique = true)
     private String username;
 
+    @Column(nullable = false)
     private String name;
 
+    @Column(nullable = false)
     private String surname;
 
+    @Column(nullable = false)
     private String password;
 
     private String avatar;
