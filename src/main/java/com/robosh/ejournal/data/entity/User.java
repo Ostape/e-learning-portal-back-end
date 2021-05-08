@@ -27,6 +27,8 @@ public class User {
 
     private String password;
 
+    private String avatar;
+
     @Column(unique = true)
     private String phone;
 

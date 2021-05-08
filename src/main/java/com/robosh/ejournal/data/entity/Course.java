@@ -33,8 +33,5 @@ public class Course {
     @OneToMany
     private List<Lesson> lessons;
 
-    @OneToMany
-    private List<Comment> comments;
-
     private Boolean isVisibleCourse;
 }
