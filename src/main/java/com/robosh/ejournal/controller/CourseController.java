@@ -3,6 +3,7 @@ package com.robosh.ejournal.controller;
 
 import com.robosh.ejournal.data.entity.Course;
 import com.robosh.ejournal.service.CourseService;
+import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,11 +23,22 @@ public class CourseController {
         return new ResponseEntity<>(courseService.createCourse(course), HttpStatus.OK);
     }
 
-    // todo add all visible courses
-
     @GetMapping("/all")
+    @ApiOperation("returns all courses where isVisible is true")
     public ResponseEntity<List<Course>> getAllCourses() {
         return new ResponseEntity<>(courseService.getAllCourses(), HttpStatus.OK);
+    }
+
+    @GetMapping("/all-all")
+    @ApiOperation("returns all all courses")
+    public ResponseEntity<List<Course>> getAllAllCourses() {
+        return new ResponseEntity<>(courseService.getAllAllCourses(), HttpStatus.OK);
+    }
+
+    @GetMapping("/all-invisible")
+    @ApiOperation("returns all courses where isVisible is false or null")
+    public ResponseEntity<List<Course>> getInvisibleCourses() {
+        return new ResponseEntity<>(courseService.getAllInvisibleCourses(), HttpStatus.OK);
     }
 
     @GetMapping("/{courseId}")

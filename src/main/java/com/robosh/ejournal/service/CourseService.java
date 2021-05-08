@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -19,6 +20,18 @@ public class CourseService {
     }
 
     public List<Course> getAllCourses() {
+        return courseRepository.findAll().stream()
+                .filter(course -> course.getIsVisibleCourse() != null && course.getIsVisibleCourse())
+                .collect(Collectors.toList());
+    }
+
+    public List<Course> getAllInvisibleCourses() {
+        return courseRepository.findAll().stream()
+                .filter(course -> course.getIsVisibleCourse() == null || !course.getIsVisibleCourse())
+                .collect(Collectors.toList());
+    }
+
+    public List<Course> getAllAllCourses() {
         return courseRepository.findAll();
     }
 
