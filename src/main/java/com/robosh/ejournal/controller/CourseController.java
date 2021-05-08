@@ -16,6 +16,8 @@ import java.util.List;
 @AllArgsConstructor
 public class CourseController {
 
+    // todo refactor this class as only Admin can create courses
+
     private final CourseService courseService;
 
     @PostMapping("/create")
