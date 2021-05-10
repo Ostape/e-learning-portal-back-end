@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -43,4 +44,14 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     private Status status;
+
+    // courses which created by Admin (teacher)
+    @Column
+    @ElementCollection(targetClass=Long.class)
+    private List<Long> createdCoursesIds;
+
+    // courses which was subscribed by User (student)
+    @Column
+    @ElementCollection(targetClass=Long.class)
+    private List<Long> subscribedCoursesIds;
 }

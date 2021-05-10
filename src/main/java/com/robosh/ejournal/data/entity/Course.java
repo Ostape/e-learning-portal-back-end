@@ -33,5 +33,9 @@ public class Course {
     @OneToMany
     private List<Lesson> lessons;
 
+    @Column
+    @ElementCollection(targetClass=Long.class)
+    private List<Long> subscribedUsers;
+
     private Boolean isVisibleCourse;
 }
