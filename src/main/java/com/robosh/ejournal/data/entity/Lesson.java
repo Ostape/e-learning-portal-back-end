@@ -32,6 +32,6 @@ public class Lesson {
 
     private String videoUrl;
 
-    @OneToMany
+    @OneToMany(cascade = {CascadeType.ALL})
     private List<Comment> comments;
 }

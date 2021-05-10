@@ -30,11 +30,11 @@ public class Course {
 
     private Float rating;
 
-    @OneToMany
+    @OneToMany(cascade = {CascadeType.ALL})
     private List<Lesson> lessons;
 
     @Column
-    @ElementCollection(targetClass=Long.class)
+    @ElementCollection(targetClass = Long.class)
     private List<Long> subscribedUsers;
 
     private Boolean isVisibleCourse;
